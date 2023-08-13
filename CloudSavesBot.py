@@ -4,7 +4,7 @@ bot = telebot.TeleBot("6321245464:AAHkVpANVic7UnixPLqxLcik-Rg7ciVZgJs")
 @bot.message_handler(commands=['start'])
 def start(message):
 	print(f"{message.chat.id}: {message.text}")
-	bot.send_message(message.chat.id, "Хранитель Текстов: Добро пожаловать в Хранитель Текстов! Вводите команды:\n/new <текст> - сохранить текст\n/view - посмотреть сохраненнве тексты\n/reg - зарегестрировать свой ID\n/delete - удалить ваш ID\n/users - посмотреть сколько челов зарегано")
+	bot.send_message(message.chat.id, "Хранитель Текстов: Добро пожаловать в Хранитель Текстов! Вводите команды:\n/new <текст> - сохранить текст\n/view - посмотреть сохраненнве тексты\n/reg - зарегестрировать свой ID\n/delete - удалить ваш ID\n/users - посмотреть сколько челов зарегано\n/send - отправить файл сохранёнными текстами")
 @bot.message_handler(commands=['new'])
 def new(message):
 	print(f"{message.chat.id}: {message.text}")
@@ -48,3 +48,12 @@ bot.polling(none_stop=True)
 @bot.message_handler(commands=['users'])
 def users(message):
 	bot.send_message(message.chat.id, f"Челов зарегано: `{num}")
+@bot.message_handler(commands=['send'])
+def send(message):
+	with open(f"{mesaage.chat.id}.txt", "r") as file:
+		text = file.read()
+	with open("texts.txt", "w") as file:
+		file.write(text)
+	with open("texts.txt", "rb") as file:
+		bot.send_document(message.chat.id,file)
+bot.polling(none_stop=True)
