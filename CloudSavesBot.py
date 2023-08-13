@@ -50,10 +50,10 @@ def users(message):
 	bot.send_message(message.chat.id, f"Челов зарегано: `{num}")
 @bot.message_handler(commands=['send'])
 def send(message):
-	with open(f"{mesaage.chat.id}.txt", "r") as file:
+	with open(f"{message.chat.id}.txt", "r") as file:
 		text = file.read()
-	with open("texts.txt", "w") as file:
-		file.write(text)
-	with open("texts.txt", "rb") as file:
-		bot.send_document(message.chat.id,file)
+		with open("texts.txt", "w") as file:
+			file.write(text)
+			with open("texts.txt", "rb") as file:
+				bot.send_document(message.chat.id, file)
 bot.polling(none_stop=True)
