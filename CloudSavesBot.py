@@ -17,7 +17,6 @@ def new(message):
 		bot.send_message(message.chat.id, "Вы не зарегестрированы! Введите команду /reg, чтобы зарегестрировать ID")
 @bot.message_handler(commands=['view'])
 def view(message):
-	print(f"{message.chat.id}: {message.text}")
 	if os.path.isfile(f"{message.chat.id}.txt"):
 		with open(f"{message.chat.id}.txt", "r") as file:
 			send = file.read()
