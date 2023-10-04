@@ -6,7 +6,6 @@ def start(message):
 	bot.send_message(message.chat.id, "Хранитель Текстов: Добро пожаловать в Хранитель Текстов! Вводите команды:\n/new <текст> - сохранить текст\n/view - посмотреть сохраненнве тексты\n/reg - зарегестрировать свой ID\n/delete - удалить ваш ID\n/users - посмотреть сколько челов зарегано\n/send - отправить файл сохранёнными текстами")
 @bot.message_handler(commands=['new'])
 def new(message):
-	print(f"{message.chat.id}: {message.text}")
 	if os.path.isfile(f"{message.chat.id}.txt"):
 		with open(f"{message.chat.id}.txt", "r") as file:
 			myfile = file.read()
