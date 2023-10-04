@@ -3,7 +3,6 @@ import os
 bot = telebot.TeleBot("6321245464:AAHkVpANVic7UnixPLqxLcik-Rg7ciVZgJs")
 @bot.message_handler(commands=['start'])
 def start(message):
-	print(f"{message.chat.id}: {message.text}")
 	bot.send_message(message.chat.id, "Хранитель Текстов: Добро пожаловать в Хранитель Текстов! Вводите команды:\n/new <текст> - сохранить текст\n/view - посмотреть сохраненнве тексты\n/reg - зарегестрировать свой ID\n/delete - удалить ваш ID\n/users - посмотреть сколько челов зарегано\n/send - отправить файл сохранёнными текстами")
 @bot.message_handler(commands=['new'])
 def new(message):
@@ -28,7 +27,6 @@ def view(message):
 		bot.send_message(message.chat.id, "Вы не зарегестрированы! Введите команду /reg, чтобы зарегестрировать ID")
 @bot.message_handler(commands=['reg'])
 def reg(message):
-	print(f"{message.chat.id}: {message.text}")
 	if os.path.isfile(f"{message.chat.id}.txt"):
 		bot.send_message(message.chat.id, "Вы зарегестрированы!")
 	else:
@@ -38,7 +36,6 @@ def reg(message):
 			bot.send_message(message.chat.id, "Успешно зарегестрирован ваш ID!")
 @bot.message_handler(commands=['delete'])
 def delete(message):
-	print(f"{message.chat.id}: {message.text}")
 	if os.path.isfile(f"{message.chat.id}.txt"):
 		os.remove(f"{message.chat.id}.txt")
 		bot.send_message(message.chat.id, "Успешно удалено!")
